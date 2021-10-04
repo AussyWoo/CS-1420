@@ -3,7 +3,7 @@
  *
  * @author  Austin Li
  * @version October 4, 2021
- */
+ **/
 
 package assignment05;
 
@@ -125,8 +125,8 @@ public class Fraction {
 	/**
 	 * Finds the greatest common denominator of two numbers
 	 *
-	 * @param one The first number to be considered
-	 * @param two The second number to be considered
+	 * @param n The first number to be considered
+	 * @param d The second number to be considered
 	 * @return The denominator of the fraction
 	 */
 	private long getGCD(long n, long d) {
