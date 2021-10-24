@@ -14,7 +14,7 @@ public class Tester {
 
         //Initializing and testing objects
 
-        //Test one (given): Tests volume and surface area
+        //Test one (given): Tessts volume and surface area
         Tesseract one = new Tesseract(30, 70, 12, 5);
         System.out.println("One: Tests volume and surface area methods.");
         System.out.println("Volume: " + one.getVolume());
