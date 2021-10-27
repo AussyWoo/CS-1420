@@ -360,6 +360,6 @@ public class ArrayExercisesTest
     @Test
     public void testFindSmallest01()
     {
-        fail("Not yet implemented");
+
     }
 }
