@@ -47,8 +47,8 @@ import java.awt.Rectangle;
  * You will write equivalent code here instead.
  * </p>
  * 
- * @author ***Put your name here***
- * @version ***Put the date here***
+ * @author Austin Li
+ * @version October 25, 2021
  */
 
 public class ArrayExercises
@@ -164,10 +164,19 @@ public class ArrayExercises
      */
     public static int count (Object[] values, Object target)
     {
-    	// Hint -- you may want code like this...
-    	// if (target == null)    or maybe   if (value == null), or some combination of code like this
-    	
-        return 0; // Stub	
+        int count = 0;
+        if(target == null) {
+            for(Object value : values) {
+                if(value == null) count++;
+            }
+            return count;
+        }
+
+
+    	for(Object value : values) {
+            if (target.equals(value)) count++;
+        }
+        return count;
     }
     
     /**
@@ -207,9 +216,18 @@ public class ArrayExercises
      * @param replacement   The replacement String reference
      * @throws NullPointerException   If list is null
      */
-    public static void replace (String[] list, String original, String replacement)
-    {
-        return; // Stub
+    public static void replace (String[] list, String original, String replacement) {
+        if(original == null) {
+            for (String string : list) {
+                if(string == null)
+                    string = replacement;
+            }
+        }
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] == original) {
+                list[i] = replacement;
+            }
+        }
     }
     
     /**
