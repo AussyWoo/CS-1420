@@ -30,6 +30,7 @@
  */
 package assignment06;
 
+import java.awt.*;
 import java.util.Arrays;  // OK in tests, not allowed in ArrayExercises
 
 // Imports for JUnit 4 (currently unused)
@@ -181,10 +182,23 @@ public class ArrayExercisesTest
     @Test
     public void testReverseOrder01()
     {
-        // Set up a char[], call the ArrayExercises.reverse(...) function.
-        // Test the array to make sure the function did its job.
+        //Initializing test array
+        char[] test= new char[]{'a','b','c'};
+        ArrayExercises.reverseOrder(test);
 
-        fail("Not yet implemented");
+        if(!Arrays.toString(test).equals("[c, b, a]"))
+            fail("Result '" + Arrays.toString(test) + "' did not match expected [c, b, a]");
+    }
+
+    @Test
+    public void testReverseOrder02()
+    {
+        //Initializing test array
+        char[] test= new char[]{'a','b','c', 'd'};
+        ArrayExercises.reverseOrder(test);
+
+        if(!Arrays.toString(test).equals("[d, c, b, a]"))
+            fail("Result " + Arrays.toString(test) + " did not match expected [d, c, b, a]");
     }
 
     @Test
@@ -310,19 +324,37 @@ public class ArrayExercisesTest
     @Test
     public void testComputeAreas01()
     {
-        fail("Not yet implemented");
+        double[] widths = new double[]{2, 4, 6};
+        double[] heights = new double[]{4, 6, 8};
+
+        double[] result = ArrayExercises.computeAreas(widths,heights);
+
+        if(result[0] != 8.0)
+            fail("Result of position 0: " + result[0] + " did not match expected value: 8.0");
+        if(result[1] != 24.0)
+            fail("Result of position 1: " + result[1] + " did not match expected value: 24.0");
+        if(result[2] != 48.0)
+            fail("Result of position 2: " + result[2] + " did not match expected value: 48.0");
     }
 
     @Test
     public void testRemove01()
     {
-        fail("Not yet implemented");
+        Color[] test = new Color[]{Color.BLUE, Color.RED, null, Color.BLUE, Color.GREEN, Color.BLACK};
+        Color[] result = ArrayExercises.remove(test, Color.BLUE);
+
+        if(!Arrays.toString(result).equals("[java.awt.Color[r=255,g=0,b=0], null, java.awt.Color[r=0,g=255,b=0], java.awt.Color[r=0,g=0,b=0]]")) {
+            fail("The colors were not removed correctly. Result: " + Arrays.toString(result) + " \nExpected: java.awt.Color[r=255,g=0,b=0], null, java.awt.Color[r=0,g=255,b=0], java.awt.Color[r=0,g=0,b=0]");
+        }
     }
 
     @Test
     public void testSort01()
     {
-        fail("Not yet implemented");
+        int[] test = new int[]{1,2,-1,232334234,3,4,5};
+        ArrayExercises.sort(test);
+
+        if(Arrays.toString(test).equals("[232334234, 5, 4, 3, 2, 1, -1]"));
     }
 
     @Test
