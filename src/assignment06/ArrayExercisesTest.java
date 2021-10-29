@@ -360,6 +360,19 @@ public class ArrayExercisesTest
     @Test
     public void testFindSmallest01()
     {
+        Rectangle one  = new Rectangle(5,4);
+        Rectangle two  = new Rectangle(1,1);
+        Rectangle three  = new Rectangle(3,4);
+        Rectangle four  = new Rectangle(2,7);
+        Rectangle[] rectangles = new Rectangle[4];
+        rectangles[0] = one;
+        rectangles[1] = two;
+        rectangles[2] = three;
+        rectangles[3] = four;
 
+        Rectangle result = ArrayExercises.findSmallest(rectangles);
+        if(result.getWidth()*result.getHeight() != 1.0) {
+            fail("Smallest rectangle was not found.");
+    }
     }
 }

@@ -383,12 +383,17 @@ public class ArrayExercises {
      * @throws NullPointerException If rectangles is null or rectangles contains null
      */
     public static Rectangle findSmallest(Rectangle[] rectangles) {
+        for(int i = 0; i < rectangles.length; i++) {
+            if(rectangles[i] == null) {
+                return rectangles[i];
+            }
+        }
         double smallest = rectangles[0].getWidth() * rectangles[0].getHeight();
         double area = smallest;
         int position = 0;
         for(int i = 0; i < rectangles.length; i++) {
-            area = rectangles[i].getWidth() * rectangles[i].getHeight()
-            if(smallest > area) {
+            area = rectangles[i].getWidth() * rectangles[i].getHeight();
+            if(smallest >= area) {
                 smallest = rectangles[i].getWidth() * rectangles[i].getHeight();
                 position = i;
             }
