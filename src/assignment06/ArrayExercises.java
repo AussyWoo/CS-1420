@@ -53,6 +53,7 @@ import java.awt.Rectangle;
  */
 
 public class ArrayExercises {
+
     /**
      * <p>
      * This method returns an array of size 'size' full of unique randomly
@@ -301,12 +302,29 @@ public class ArrayExercises {
     public static Color[] remove(Color[] pixels, Color target) {
         Color[] tempNewArray = new Color[pixels.length];
         int count = 0;
-        for (int i = 0; i < pixels.length; i++) {
-            if (pixels[i] != target) {
-                tempNewArray[count] = pixels[i];
-                count++;
+
+        //Check if target is null and react properly
+        if(target == null) {
+            for (int i = 0; i < pixels.length; i++) {
+                if(pixels[i] != null) {
+                    tempNewArray[count] = pixels[i];
+                    count++;
+                }
             }
         }
+        else {
+            for (int i = 0; i < pixels.length; i++) {
+                if(pixels[i] == null) {
+                    tempNewArray[count] = null;
+                    count++;
+                }
+                else if (!pixels[i].equals(target)) {
+                    tempNewArray[count] = pixels[i];
+                    count++;
+                }
+            }
+        }
+
         Color[] newArray = new Color[count];
         for (int i = 0; i < newArray.length; i++) {
             newArray[i] = tempNewArray[i];

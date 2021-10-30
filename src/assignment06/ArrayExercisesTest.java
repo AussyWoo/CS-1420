@@ -178,7 +178,8 @@ public class ArrayExercisesTest
         //   (When this method ends normally, the test is marked as passing.)
     }
 
-
+    /* Tests a normal case with a 3 length character array
+     */
     @Test
     public void testReverseOrder01()
     {
@@ -190,45 +191,83 @@ public class ArrayExercisesTest
             fail("Result '" + Arrays.toString(test) + "' did not match expected [c, b, a]");
     }
 
+    /* Tests a normal case with a 4 length character array
+     */
     @Test
     public void testReverseOrder02()
     {
         //Initializing test array
-        char[] test= new char[]{'a','b','c', 'd'};
+        char[] test= new char[]{'d','c','b', 'a'};
         ArrayExercises.reverseOrder(test);
 
-        if(!Arrays.toString(test).equals("[d, c, b, a]"))
+        if(!Arrays.toString(test).equals("[a, b, c, d]"))
             fail("Result " + Arrays.toString(test) + " did not match expected [d, c, b, a]");
     }
 
+    /* Tests counting an integer within an array that contains null values
+     */
     @Test
     public void testCount01()
     {
         //Initializing test array
-        Object[] test = new Object[]{0, 1, 2, null, 3, 4, 4, 5, 6, 7, null, null, 8, 9, 10, 10};
-        int target1 = 4;
+        Object[] test = new Object[]{0, 1, 2, null, 3, 4, 4, 4.0, 5, 6, 7, null, null, 8, 9, 10, 10};
+        int target = 4;
 
 
         //Test for counting the number of '4'
-        int result = ArrayExercises.count(test, target1);
+        int result = ArrayExercises.count(test, target);
         if(result != 2)
             fail("Target count for '4' is incorrect. Expected: " + 2 + " | Result: " + result);
 
     }
 
+    /* Tests counting null within an array that contains null values
+     */
     @Test
     public void testCount02() {
 
         //Initializing test array
         Object[] test = new Object[]{0, 1, 2, null, 3, 4, 4, 5, 6, 7, null, null, 8, 9, 10, 10};
-        Object target2 = null;
+        Object target = null;
 
         //Test for counting the number of 'null'
-        int result = ArrayExercises.count(test, target2);
+        int result = ArrayExercises.count(test, target);
         if(result != 3)
             fail("Target count for '4' is incorrect. Expected: " + 3 + " | Result: " + result);
     }
 
+    /* Tests counting an integer within an array that contains an equivalent double
+     */
+    @Test
+    public void testCount03() {
+
+        //Initializing test array
+        Object[] test = new Object[]{0, 1, 2, null, 3, 4, 4, 5, 6, 7, null, null, 8, 9, 10.0, 10};
+        Object target = 10;
+
+        //Test for counting the number of 'null'
+        int result = ArrayExercises.count(test, target);
+        if(result != 1)
+            fail("Target count for '4' is incorrect. Expected: " + 1 + " | Result: " + result);
+    }
+
+    /* Tests counting a double within an array that contains an equivalent double that is a different object
+     */
+    @Test
+    public void testCount04() {
+
+        //Initializing test array
+        Object[] test = new Object[]{0, 1.0, 1, 2, null, 3, 4, 4, 5, 6, 7, null, new Double(1), 8, 9, 10.0, 10};
+        Object target = 1.0;
+
+        //Test for counting the number of 'null'
+        int result = ArrayExercises.count(test, target);
+        if(result != 2)
+            fail("Target count for '4' is incorrect. Expected: " + 3 + " | Result: " + result);
+    }
+
+    /* Tests replacing a string object within a string array that contains an equivalent string of a different object
+     */
     @Test
     public void testReplace01()
     {
@@ -252,31 +291,10 @@ public class ArrayExercisesTest
 
     }
 
+    /* Tests replacing a null object within a string array
+     */
     @Test
     public void testReplace02()
-    {
-        //Initializing test array
-        String[] list = new String[]{"Hi", "Hello", "Hey", new String("Hello"), "Howdy", null, "Hallo"};
-        String replace = "Replaced";
-
-        //Test for replacing the second "Hello" in the array
-        String target = list[3];
-        ArrayExercises.replace(list, target, replace);
-
-        String[] expected = new String[]{"Hi", "Hello", "Hey", replace, "Howdy", null, "Hallo"};
-        for(int i = 0; i < list.length; i++) {
-            if (list[i] == null && expected[i] == null) {
-            } else if (list[i] == null || expected[i] == null) {
-                fail("Resulting list did not match expected list.");
-            } else if (!list[i].equals(expected[i])) {
-                fail("Resulting list did not match expected list.");
-            }
-        }
-
-    }
-
-    @Test
-    public void testReplace03()
     {
         //Initializing test array
         String[] list = new String[]{"Hi", "Hello", "Hey", new String("Hello"), "Howdy", null, "Hallo"};
@@ -298,8 +316,10 @@ public class ArrayExercisesTest
 
     }
 
+    /* Tests replacing multiple null objects within a string array
+     */
     @Test
-    public void testReplace04()
+    public void testReplace03()
     {
         //Initializing test array
         String[] list = new String[]{"Hi", "Hello", "Hey", new String("Hello"), "Howdy", null, "Hallo", null};
@@ -321,6 +341,38 @@ public class ArrayExercisesTest
 
     }
 
+    /* Tests replacing a string object within a string array that contains two equivalent strings of a different object
+     */
+    @Test
+    public void testReplace04()
+    {
+        //Initializing test array
+        String[] list = new String[]{"Hi", "Hello", "Hey", null, "Howdy", null, "Hallo", null};
+        String replace = "Replaced";
+
+        String special = new String("Hello");
+
+        list[3] = special;
+        list[7] = special;
+
+        //Test for replacing the second "Hello" in the array
+        String target = list[3];
+        ArrayExercises.replace(list, target, replace);
+
+        String[] expected = new String[]{"Hi", "Hello", "Hey", replace, "Howdy", null, "Hallo", replace};
+        for(int i = 0; i < list.length; i++) {
+            if (list[i] == null && expected[i] == null) {
+            } else if (list[i] == null || expected[i] == null) {
+                fail("Resulting list did not match expected list.");
+            } else if (!list[i].equals(expected[i])) {
+                fail("Resulting list did not match expected list.");
+            }
+        }
+
+    }
+
+    /* Tests a normal case with only whole number doubles
+     */
     @Test
     public void testComputeAreas01()
     {
@@ -337,6 +389,26 @@ public class ArrayExercisesTest
             fail("Result of position 2: " + result[2] + " did not match expected value: 48.0");
     }
 
+    /* Tests a case with non-whole number doubles and negative doubles
+     */
+    @Test
+    public void testComputeAreas02()
+    {
+        double[] widths = new double[]{2, -4, 6};
+        double[] heights = new double[]{4, 6, 8.5};
+
+        double[] result = ArrayExercises.computeAreas(widths,heights);
+
+        if(result[0] != 8.0)
+            fail("Result of position 0: " + result[0] + " did not match expected value: 8.0");
+        if(result[1] != -24.0)
+            fail("Result of position 1: " + result[1] + " did not match expected value: 24.0");
+        if(result[2] != 51.0)
+            fail("Result of position 2: " + result[2] + " did not match expected value: 48.0");
+    }
+
+    /* Tests a normal case with only colors
+     */
     @Test
     public void testRemove01()
     {
@@ -348,15 +420,69 @@ public class ArrayExercisesTest
         }
     }
 
+    /* Tests removing null objects
+     */
+    @Test
+    public void testRemove02()
+    {
+        Color[] test = new Color[]{Color.BLUE, Color.RED, null, Color.BLUE, Color.GREEN, Color.BLACK};
+        Color[] result = ArrayExercises.remove(test, null);
+
+        if(!Arrays.toString(result).equals("[java.awt.Color[r=0,g=0,b=255], java.awt.Color[r=255,g=0,b=0], java.awt.Color[r=0,g=0,b=255], java.awt.Color[r=0,g=255,b=0], java.awt.Color[r=0,g=0,b=0]]")) {
+            fail("The colors were not removed correctly. Result: " + Arrays.toString(result) + " \nExpected: java.awt.Color[r=255,g=0,b=0], null, java.awt.Color[r=0,g=255,b=0], java.awt.Color[r=0,g=0,b=0]");
+        }
+    }
+
+    /* Tests removing equivalent colors of different objects
+     */
+    @Test
+    public void testRemove03()
+    {
+        Color[] test = new Color[]{Color.BLUE, new Color(0,0,255)};
+        Color[] result = ArrayExercises.remove(test, Color.BLUE);
+
+        if(!Arrays.toString(result).equals("[]")) {
+            fail("The colors were not removed correctly. Result: " + Arrays.toString(result) + " \nExpected: []");
+        }
+    }
+
+    /* Tests an array with positive and negative integers
+     */
     @Test
     public void testSort01()
     {
-        int[] test = new int[]{1,2,-1,232334234,3,4,5};
+        int[] test = new int[]{1,2,-1,232334234,5,3,4,5};
         ArrayExercises.sort(test);
 
-        if(Arrays.toString(test).equals("[232334234, 5, 4, 3, 2, 1, -1]"));
+        if(Arrays.toString(test).equals("[232334234, 5, 5, 4, 3, 2, 1, -1]"));
     }
 
+    /* Tests an array with repeating integers
+     */
+    @Test
+    public void testSort02()
+    {
+        int x = 1;
+        int y = 2;
+        int[] test = new int[]{x,y,x,y,x,y,x,y,x};
+        ArrayExercises.sort(test);
+
+        if(Arrays.toString(test).equals("[1, 1, 1, 1, 1, 2, 2, 2, 2]"));
+    }
+
+    /* Tests a normal array that's already sorted and requires no sorting
+     */
+    @Test
+    public void testSort03()
+    {
+        int[] test = new int[]{8,7,6,5,4,3,2,1};
+        ArrayExercises.sort(test);
+
+        if(Arrays.toString(test).equals("[8, 7, 6, 5, 4, 3, 2, 1]"));
+    }
+
+    /* Tests a rectangle array with whole number positive integer parameters
+     */
     @Test
     public void testFindSmallest01()
     {
@@ -371,8 +497,31 @@ public class ArrayExercisesTest
         rectangles[3] = four;
 
         Rectangle result = ArrayExercises.findSmallest(rectangles);
-        if(result.getWidth()*result.getHeight() != 1.0) {
+        if(result != two) {
             fail("Smallest rectangle was not found.");
     }
+    }
+
+    /* Tests a rectangle array with a duplicate smallest rectangle to make sure the 2nd one is returned
+     */
+    @Test
+    public void testFindSmallest02()
+    {
+        Rectangle one  = new Rectangle(5,4);
+        Rectangle two  = new Rectangle(1,1);
+        Rectangle three  = new Rectangle(3,4);
+        Rectangle four  = new Rectangle(2,7);
+        Rectangle five  = new Rectangle(1,1);
+        Rectangle[] rectangles = new Rectangle[5];
+        rectangles[0] = one;
+        rectangles[1] = two;
+        rectangles[2] = three;
+        rectangles[3] = four;
+        rectangles[4] = five;
+
+        Rectangle result = ArrayExercises.findSmallest(rectangles);
+        if(result != five) {
+            fail("Smallest rectangle was not found.");
+        }
     }
 }
