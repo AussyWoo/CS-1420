@@ -96,7 +96,6 @@ public class CalculatorApplication implements Runnable
 
         // Create the buttons, add them to the inner panel.
 
-
         JButton one = new JButton ("1");
         buttonPanel.add (one);
         JButton two = new JButton ("2");
