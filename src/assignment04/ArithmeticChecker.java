@@ -69,11 +69,11 @@ public class ArithmeticChecker {
 		//Check if numbers match, print and throw error if not
 		//Extra print statements are to ensure that $73.30 doesn't print as $73.3
 		if(sum != total){
-			System.out.println("Arithmetic error on " + date);
+			System.out.println("Arithmetic error on " + date + ".");
 			System.out.print("Amount is recorded as $");
-			System.out.printf("%.2f", sum/100.0); 
-			System.out.print(", should actually be $");
 			System.out.printf("%.2f", total/100.0);
+			System.out.print(", should actually be $");
+			System.out.printf("%.2f", sum/100.0);
 			System.out.print(".");
 			throw new IllegalStateException();
 		}
