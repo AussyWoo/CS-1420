@@ -26,6 +26,7 @@ public class FractionRoot {
 		Fraction half = new Fraction(1,2);
 		
 		for(int i = 0; i < approx; i++) {
+			System.out.println(i);
 			sqrt = half.multiply(sqrt.add(frac.divide(sqrt)));
 		}
 		
